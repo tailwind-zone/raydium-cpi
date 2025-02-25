@@ -25,17 +25,8 @@ pub struct Initialize<'info> {
     pub authority: UncheckedAccount<'info>,
 
     /// CHECK: Initialize an account to store the pool state, init by contract
-    /// PDA account:
-    /// seeds = [
-    ///     POOL_SEED.as_bytes(),
-    ///     amm_config.key().as_ref(),
-    ///     token_0_mint.key().as_ref(),
-    ///     token_1_mint.key().as_ref(),
-    /// ],
-    ///
-    /// Or random account: must be signed by cli
     #[account(mut)]
-    pub pool_state: UncheckedAccount<'info>,
+    pub pool_state: Signer<'info>,
 
     /// Token_0 mint, the key must smaller then token_1 mint.
     #[account(
